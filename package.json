@@ -1,0 +1,51 @@
+{
+  "name": "rs-clone",
+  "version": "1.0.0",
+  "description": "rs clone",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --open --config ./webpack.config.js --env mode=dev slash=/",
+    "build": "webpack --config ./webpack.config.js --env mode=prod slash=./",
+    "dev": "webpack --config ./webpack.config.js --env mode=dev slash=./",
+    "lint": "eslint . --ext .ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tipok-1/RS-Clone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tipok-1/RS-Clone/issues"
+  },
+  "homepage": "https://github.com/Tipok-1/RS-Clone#readme",
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@types/react": "^18.0.27",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.3",
+    "eslint": "^8.33.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "prettier": "^2.8.3",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0"
+  }
+}
