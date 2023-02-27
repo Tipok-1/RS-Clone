@@ -1,0 +1,12 @@
+.form{
+    height:250px;
+    width: 300px;
+    background-color: rgba(76,76,76, 0.5);;
+    border:2px solid yellow;
+    border-radius: 6px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: center;
+    position: relative;
+}
