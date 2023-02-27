@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+body{
+    overflow-y: hidden;
+}
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+.gotoMenu{
+    position:fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /*background-color: #9B9CA7;*/
+    border:3px solid yellow;
+    height:100px;
+    width:100px;
+    bottom:0;
+    right:0;
+    margin: 0 10px 10px 0;
+    border-radius: 6px;
+}
+.gotoMenu:hover{
+    cursor: pointer;
+}

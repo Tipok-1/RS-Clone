@@ -1,0 +1,57 @@
+.Lives{
+    position:fixed;
+    height:100px;
+    width:200px;
+    margin-top:10px;
+    margin-left:10px;
+    z-index: 3;
+}
+.characterHP{
+    height:70px;
+    width:200px;
+    display:flex;
+}
+.ico{
+    height:100%;
+    width:30%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.HPandNAME{
+    height:100%;
+    width:70%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.name{
+    height:30%;
+    width:100%;
+    font-size: 20px;
+    text-align: center;
+    color:wheat
+}
+.HP{
+    height:10%;
+    width:90%;
+    margin: 10px 5% 0 5%;
+    border-radius: 6px;
+    background-color: rgb(76,76,76);
+}
+.currentHP{
+    background-color: rgb(249,249,9);
+    height:100%;
+    border-radius: 6px;
+}
+.allLives{
+    height:30px;
+    width:100%;
+    display:flex;
+    justify-content: center;
+}
+.onelive{
+    height:100%;
+    width:30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

@@ -1,0 +1,16 @@
+#GameField{
+    height: 2800px;
+    width: 7650px;
+    background-size:cover;
+    background-position: 50% 80%;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow-y: hidden;
+}
+#GameField:before{
+    content:'';
+    height:100%;
+    width: 100%;
+    position: absolute;
+    
+}

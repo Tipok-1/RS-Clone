@@ -1,0 +1,33 @@
+.Auth{
+    background-position: center;
+    height:100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+.Auth:before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(56,58,79,0.5);
+}
+
+/**/
+.title{
+    font-size: 66px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    color: white;
+}
+.enemyWrap{
+    width: 100%;
+    position: relative;
+    margin-bottom: 230px;
+}

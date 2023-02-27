@@ -1,0 +1,21 @@
+.Input{
+    height: 30px;
+    width: 90%;
+    border-radius: 6px;
+    background-color: #9B9CA7;
+    border:1px solid yellow;
+    color:black;
+    padding: 5px;
+}
+.Button{
+    height: 30px;
+    width: 40%;
+    border-radius: 6px;
+    background-color: #9B9CA7;
+    border:1px solid yellow;
+    color:black;
+    position: relative;
+}
+.Button:hover{
+    cursor: pointer;
+}
