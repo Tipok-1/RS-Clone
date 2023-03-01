@@ -143,6 +143,7 @@ export interface IEnemyWhithoutFunc{
     top:number,
     rightDirection:boolean,
     key:string,
+    HP:number,
 
     myBullet?:IBulletWithoutState
 }

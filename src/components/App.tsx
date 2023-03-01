@@ -37,7 +37,6 @@ const App = (): JSX.Element => {
     let [character, setch] = React.useState<ICharacterWhithoutState>(character1)
     let [level, setlevel] = React.useState(<Level1 character={character} setLevel={setLevel}/>);
     useEffect(()=>{
-        console.log(Character);
         Character == 1 ? setch(character1) : setch(character2);
     },[Character])
 

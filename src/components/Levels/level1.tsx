@@ -114,6 +114,7 @@ const Level1 = (props:ILevel1): JSX.Element => {
             atackAllEnymySteps:o.atackAllEnymySteps,
             atackSteps:o.atackSteps,
             atackSpeed:o.atackSpeed,
+            HP:100,
     
             myBullet:{
                 height:10,

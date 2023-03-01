@@ -91,7 +91,6 @@ const Bullet = (props:IBullet) => {
              || (element?.tagName == 'DIV' && element.classList.contains('block')))
             )
             {
-                console.log(element);
                 this.end = true;
                 setEndLive(true)
             } 

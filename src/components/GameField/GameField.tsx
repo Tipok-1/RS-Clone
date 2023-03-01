@@ -213,6 +213,7 @@ const GameField = (props:IGameField):JSX.Element => {
                             atackAllEnymySteps={enm.atackAllEnymySteps}
                             atackSteps={enm.atackSteps}
                             atackSpeed={enm.atackSpeed}
+                            HP={enm.HP}
 
                             myBullet={enm.myBullet}
                         />

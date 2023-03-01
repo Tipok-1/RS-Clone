@@ -65,7 +65,7 @@ export let character2:ICharacterWhithoutState ={
 
     attackSteps:5,
     attack:character_2_attack,
-    attackSpeed:2,
+    attackSpeed:100,
 
     myBullet:{
         height:10,

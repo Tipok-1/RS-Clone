@@ -62,10 +62,12 @@ const Level2 = (props:ILevel2) => {
         {id:uuid(),height:100,width:100,top:allHeight - 1300,left:4650},
         {id:uuid(),height:100,width:300,top:allHeight - 1300,left:5850},
         
-        {id:uuid(),height:100,width:500,top:allHeight - 500,left:4350},
-        {id:uuid(),height:100,width:500,top:allHeight - 500,left:4350},
+        {id:uuid(),height:100,width:600,top:allHeight - 614,left:4250},
+        {id:uuid(),height:100,width:500,top:allHeight - 700,left:4350},
 
         {id:uuid(),height:400,width:300,top:allHeight - 350,left:5250},
+        {id:uuid(),height:100,width:100,top:allHeight - 850,left:3550},
+
         {id:uuid(),height:200,width:200,top:allHeight - 150,left:5550},
         {id:uuid(),height:500,width:100,top:allHeight - 550,left:6050},
         {id:uuid(),height:100,width:200,top:allHeight - 900,left:6400},
@@ -122,6 +124,7 @@ const Level2 = (props:ILevel2) => {
             atackAllEnymySteps:o.atackAllEnymySteps,
             atackSteps:o.atackSteps,
             atackSpeed:o.atackSpeed,
+            HP:250,
     
             myBullet:{
                 height:90,
@@ -206,7 +209,7 @@ const Level2 = (props:ILevel2) => {
         }),
         addEnemy({
             left:4310,
-            top:2150,
+            top:1950,
             rightDirection:true,
             walkAllEnymySteps:20,
             walkSteps:11,

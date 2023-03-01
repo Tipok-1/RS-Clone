@@ -71,7 +71,7 @@ const Enemy:FC<IEnymy> = ({width, height, ...props}) => {
         
         animationSpeed:props.walkSpeed,
         intervalID:undefined,
-        HP:100,
+        HP:props.HP,
         blockHP:null,
         bullet:[],
         init(){
@@ -115,7 +115,7 @@ const Enemy:FC<IEnymy> = ({width, height, ...props}) => {
             }
         },
         checkDamage(){
-            this.blockHP!.style.width = this.HP + '%';
+            this.blockHP!.style.width =  this.HP / Math.round(props.HP / 100) + '%';
             if(this.HP <= 0){
                 if(this.action  != 'die')
                     this.died();
