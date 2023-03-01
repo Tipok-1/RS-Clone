@@ -1,0 +1,13 @@
+#door{
+    background-size: contain;
+    background-repeat: no-repeat;
+    position:absolute;
+    bottom:0px;
+
+}
+#castle{
+    display:flex;
+    align-items: flex-end;
+    justify-content: center;
+    background-size: contain;
+}

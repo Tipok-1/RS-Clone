@@ -1,0 +1,56 @@
+.Menu{
+    height:100vh;
+    width:100vw;
+    display: flex;
+    background-size:cover;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+}
+.title, .titleSetting, .titleLeaderBoard{
+    font-size: 66px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    color: #9B9CA7;
+}
+.allButtons, .Setting, .LeaderBoard{
+    height:60%;
+    width:40%;
+    border-radius: 6px;
+    background-color: rgba(76,76,76, 0.5);
+    border:2px solid yellow;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.allLiders{
+    height: 70%;
+    width: 90%;
+    color: #9B9CA7;
+    padding:10px;
+    font-size: 3em;
+}
+.Setting{
+    height:40%;
+    width:30%;
+}
+
+.titleSetting, .titleLeaderBoard{
+    margin-bottom: 10px;
+}
+.back{
+    height:60px;
+    width:60px;
+    background-color: #9B9CA7;
+    border:1px solid yellow;
+    align-self: flex-end;
+    border-radius: 50%;
+    margin-right: 20px;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.back:hover{
+    cursor: pointer;
+}

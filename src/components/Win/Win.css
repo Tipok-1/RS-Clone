@@ -1,0 +1,41 @@
+.Win{
+    height:100vh;
+    width:100vw;
+    display: flex;
+    background-size:cover;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.Win:before{
+    content:'';
+    height: 100%;
+    width: 100%;
+    top:0;
+    position:absolute;
+    background-color: rgba(0,0,0,0.3);
+}
+.winTitle{
+    height:300px;
+    font-size: 3em;
+    animation: 2s ease-in 1 forwards Loze;
+}
+.goMenuWin{
+    height:100px;
+    width: 100px;
+    background-color: rgb(182, 182, 28);
+    border:1px solid #203C3F;
+    border-radius: 6px;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+.goMenuWin:hover{
+    cursor: pointer;
+}
+.PlaceTitle{
+    margin-bottom: 30px;
+    font-size: 3em;
+}

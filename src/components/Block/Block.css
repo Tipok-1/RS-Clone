@@ -1,0 +1,11 @@
+.block{
+    position:absolute;
+    top:0px;
+    height:10px;
+    width:100px;
+    margin-top:0px;
+}
+.blockParent{
+    
+    position:'absolute';
+}

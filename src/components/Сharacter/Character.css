@@ -1,0 +1,6 @@
+.characterCanvas{
+    position: absolute;
+}
+.mirrorX { 
+    transform: scale(-1, 1);
+}
