@@ -11,7 +11,6 @@ interface ICharacterHP{
 }
 const CharacterHP = (props:ICharacterHP) => {
     let allHP=[];
-    console.log(`HP${props.ico}`);
     
     for(let i = 0; i < props.HPcount; i++)
     {

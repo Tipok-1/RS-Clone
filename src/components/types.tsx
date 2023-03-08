@@ -10,7 +10,7 @@ export interface ICanvasCharacter{
     ctx: null | CanvasRenderingContext2D,
     image:null | HTMLImageElement,
     frame:number,
-    walk:string,
+    walk:HTMLImageElement,
     corX:number,
     corY:number,
     animationSpeed:number,
@@ -57,16 +57,16 @@ export interface ICharacter extends ICharacterWhithoutState{
 export interface ICharacterWhithoutState{
     width:number,
     height:number
-    walk:string,
+    walk:HTMLImageElement,
     walkSpeed:number
     walkSteps: number,
-    jump:string,
+    jump:HTMLImageElement,
     jumpSpeed:number
     jumpSteps: number,
-    die:string,
+    die:HTMLImageElement,
     dieSpeed:number
     dieSteps: number,
-    attack:string,
+    attack:HTMLImageElement,
     attackSpeed:number
     attackSteps: number,
     HP:number,
@@ -81,7 +81,7 @@ export interface IBlock extends IBlockWhithoutImage{
         left_up:string,
         right:string,
         right_up:string,
-        down:string
+        down:string,
     }
 }
 export interface IBlockWhithoutImage{
@@ -102,7 +102,7 @@ export interface IBullet extends IBulletWithoutState{
 export interface IBulletWithoutState{
     height:number,
     width:number,
-    image:string,
+    image:HTMLImageElement,
     stepCount:number,
     damage:number,
     offset?:number
@@ -117,22 +117,22 @@ export interface IEnymy extends IEnemyWhithoutFunc{
   // startAttack:boolean,
 }
 export interface IEnemyWhithoutFunc{
-    walk: string,
+    walk: HTMLImageElement,
     walkSteps: number,
     walkAllEnymySteps:number,
     walkSpeed:number,
 
-    stand:string,
+    stand:HTMLImageElement,
     standSteps: number
     standAllEnymySteps:number,
     standSpeed:number,
 
-    die:string,
+    die:HTMLImageElement,
     dieSteps: number
     dieAllEnymySteps:number,
     dieSpeed:number,
 
-    atack:string,
+    atack:HTMLImageElement,
     atackSteps: number
     atackAllEnymySteps:number,
     atackSpeed:number,
@@ -143,6 +143,7 @@ export interface IEnemyWhithoutFunc{
     top:number,
     rightDirection:boolean,
     key:string,
+    HP:number,
 
     myBullet?:IBulletWithoutState
 }

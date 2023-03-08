@@ -6,6 +6,7 @@
     background-repeat: no-repeat;
     position: relative;
     overflow-y: hidden;
+    position:relative;
 }
 #GameField:before{
     content:'';

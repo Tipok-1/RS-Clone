@@ -13,10 +13,10 @@ interface IEnymyCanvas{
     ctx: null | CanvasRenderingContext2D,
     image:null | HTMLImageElement,
     frame:number,
-    walk:string,
-    stand:string,
-    die:string,
-    atack:string,
+    walk:HTMLImageElement,
+    stand:HTMLImageElement,
+    die:HTMLImageElement,
+    atack:HTMLImageElement,
     corX:number,
     allEnymySteps:number,
     allSteps:number,
@@ -71,7 +71,7 @@ const Enemy:FC<IEnymy> = ({width, height, ...props}) => {
         
         animationSpeed:props.walkSpeed,
         intervalID:undefined,
-        HP:100,
+        HP:props.HP,
         blockHP:null,
         bullet:[],
         init(){
@@ -90,7 +90,7 @@ const Enemy:FC<IEnymy> = ({width, height, ...props}) => {
             }
             this.corX = this.canvas!.parentElement!.offsetLeft;
             this.image = new Image();
-            this.image.src = this.walk;
+            this.image = this.walk;
             this.canvas!.addEventListener("damage",(e:CustomEventInit)=>{
                 this.HP -= e.detail.damage;
                 this.checkDamage();
@@ -100,7 +100,8 @@ const Enemy:FC<IEnymy> = ({width, height, ...props}) => {
         reset(act:string){
             if(this.image)
             {
-                this.image!.src = this[act as keyof typeof CANVAS] as string;
+                //this.image!.src = this[act as keyof typeof CANVAS] as string;
+                this.image = props[act as keyof typeof props] as HTMLImageElement;
                 this.frame = 0;
                 this.allSteps = props[act + 'Steps' as keyof typeof props] as number;
                 this.allEnymySteps = 0;
@@ -115,7 +116,7 @@ const Enemy:FC<IEnymy> = ({width, height, ...props}) => {
             }
         },
         checkDamage(){
-            this.blockHP!.style.width = this.HP + '%';
+            this.blockHP!.style.width =  this.HP / Math.round(props.HP / 100) + '%';
             if(this.HP <= 0){
                 if(this.action  != 'die')
                     this.died();
@@ -245,7 +246,7 @@ const Enemy:FC<IEnymy> = ({width, height, ...props}) => {
                 key={key}
                 height={props.myBullet?.height ?? 10}
                 width={props.myBullet?.width ?? 10}
-                image={props.myBullet?.image ?? ''}
+                image={props.myBullet?.image ?? new Image()}
                 stepCount={props.myBullet?.stepCount ?? 7}
                 speed={4}
                 corX={x}

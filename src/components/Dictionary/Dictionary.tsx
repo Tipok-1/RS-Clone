@@ -1,20 +1,20 @@
 export function getCharacter_1Info(language:string){
     if(language == 'RU') {
         return {
-            title:'Самурай',
+            title:'Ниндзя',
             damage:'Урон: 20',
             speed:'Скорость: 5 м/с',
             damageType:'Тип: Дальний бой',
-            discription:'Описание: Самурай - быстрый универсальный воин. Незаменим в борбе против големов. Имеет большую скорость и средний урон'
+            discription:'Описание: Ниндзя - быстрый универсальный воин. Незаменим в борбе против големов. Имеет большую скорость и средний урон'
         }
     }else {
         return(
             {
-                title:'Samurai',
+                title:'Ninja',
                 damage:'Damage: 20',
                 speed:'Speed: 5 m/s',
                 damageType:'Type: Distant battle',
-                discription:'Description: Samurai is a fast versatile warrior. Indispensable in the fight against golems. Has great speed and average damage'
+                discription:'Description: Ninja is a fast versatile warrior. Indispensable in the fight against golems. Has great speed and average damage'
             }
         )
     }

@@ -10,12 +10,10 @@ import {IBlockWhithoutImage, ICanvasCharacter, IEnemyWhithoutFunc, ICharacterWhi
 import { v4 as uuid } from 'uuid';
 import Door from '../Door/Door';
 import wallImage from '../../assets/brick.png'
-import doorImage from '../../assets/close_door.png'
 import openDoorImage from '../../assets/open_door.png'
 
 import character_1_ico from '../../assets/Sprites/Character/ico.png'
 import Enemy from '../Enemy/Enemy';
-import {useNavigate } from 'react-router-dom';
 import back from '../../assets/back.png'
 
 interface IGameField{
@@ -30,7 +28,7 @@ interface IGameField{
         left_up:string,
         right:string,
         right_up:string,
-        down:string
+        down:string,
     }
     setLevel?:(n:number)=>void
 }
@@ -38,7 +36,7 @@ interface IGameField{
 const GameField = (props:IGameField):JSX.Element => {
     
     const GameFieldRef = React.useRef<HTMLDivElement>(null);
-    function scrollWindow(obj:ICanvasCharacter){
+    function scrollWindow(obj:ICanvasCharacter){  
         window.scrollTo(obj.corX - document.documentElement.clientHeight / 2 - 200,obj.corY- 300)
     }
     useEffect(()=>{
@@ -213,6 +211,7 @@ const GameField = (props:IGameField):JSX.Element => {
                             atackAllEnymySteps={enm.atackAllEnymySteps}
                             atackSteps={enm.atackSteps}
                             atackSpeed={enm.atackSpeed}
+                            HP={enm.HP}
 
                             myBullet={enm.myBullet}
                         />

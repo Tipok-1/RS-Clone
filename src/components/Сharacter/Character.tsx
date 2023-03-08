@@ -21,7 +21,6 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
     let isFall = false;
     let isDie = false;
     let isAttack = false;
-
     let CANVAS:ICanvasCharacter = {
         walk:props.walk,
         canvas:null,
@@ -38,6 +37,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
         bullet:[],
         allLives:3,
         HP:props.HP,
+        
         init(){
             this.canvas = canvasRef.current;
             this.ctx = this.canvas!.getContext('2d');
@@ -47,7 +47,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
             this.corX = this.canvas!.offsetLeft;
             this.canvas!.style.top = `${this.corY}px`;
             this.image = new Image();
-            this.image.src = this.walk;
+            this.image = this.walk;
             this.canvas!.addEventListener("damage",(e:CustomEventInit)=>{
                 this.HP -= e.detail.damage;
                 let prosent = Math.round(((this.HP * 100)/props.HP));
@@ -57,8 +57,9 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
                     if(!isDie){
                         this.resetFall()
                         this.allSteps = props.dieSteps;
-                        this.image!.src = props.die;
-                        this.die();
+                        this.image = props.die;
+                       // if(!itWin)
+                            this.die();
                     }
                 }
             })
@@ -68,7 +69,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
             if(isJump || isDoubleJump)
             {
                 if(!isAttack)
-                    this!.image!.src = props.walk
+                    this!.image = props.walk
                 isJump = false;
                 isDoubleJump = false;
             }
@@ -94,8 +95,12 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
             {
                 this.resetFall()
                 this.allSteps = props.dieSteps;
-                this.image!.src = props.die;
-                this.die();
+                this.image= props.die;
+               //if(!itWin){
+            console.log(this.canvas!.parentElement!.offsetHeight);
+               
+                    this.die();
+               //}
             }
             else {isFall = true}
             props.scrollWindow(this);
@@ -104,7 +109,8 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
                 this.corY = parseFloat(this.canvas!.style.top) + this.fallStep;
                 this.fallStep += 0.01;
                 this.canvas!.style.top = this.corY + 'px'
-                setTimeout(()=>this.checkFall(), 2);
+                if(!itWin)
+                    setTimeout(()=>this.checkFall(), 2);
             }
         },
         checkLet(){
@@ -131,9 +137,9 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
         },
         win(){
             fn();
-            
             if(props.setLevel)
             {
+                itWin = true;
                 localStorage.setItem('firstLevelScore', `${this.HP * this.allLives}`);
                 props.setLevel(2)
             } else {
@@ -169,45 +175,48 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
                     else{
                         localStorage.setItem('Leaders', JSON.stringify([]));
                     }
+                    router(WinPath);
                 }
-
-                router(WinPath);
             }
         },
         makeStep(){
             if(!isDie){
+                //console.log('1');
+                
                 if(this.corY <= 825 && this.corY >= 808 && this.corX >= 7380 && this.corX <= 7420)
                 {
                     this.win();
                 }
-                this.checkLet()
-                if(this.corX >= 7650 - props.width + 10 && moveRight
-                || this.corX <= -10 && moveLeft)
-                {
-                    this.stepLength = 0;
-                }
-                if(this.direction == 'right' || this.direction == 'left')
-                {
-
-                    if(!isFall)
-                        this.checkFall()
-                    this.corX += this.stepLength;
-                    this.canvas!.style.left = `${this.corX}px`;
-                }
-                if(!isJump && !isFall && !isAttack){
-                    
-                    this.frame++;
-                    if(this.frame == this.allSteps)
+                if(!itWin){
+                    this.checkLet()
+                    if(this.corX >= 7650 - props.width + 10 && moveRight
+                    || this.corX <= -10 && moveLeft)
                     {
+                        this.stepLength = 0;
+                    }
+                    if(this.direction == 'right' || this.direction == 'left')
+                    {
+
+                        if(!isFall)
+                            this.checkFall()
+                        this.corX += this.stepLength;
+                        this.canvas!.style.left = `${this.corX}px`;
+                    }
+                    if(!isJump && !isFall && !isAttack){
+                        
+                        this.frame++;
+                        if(this.frame == this.allSteps)
+                        {
+                            this.frame = 0;
+                        }
+                    }
+                    if(moveRight || moveLeft)
+                    {
+                        setTimeout(()=>this.makeStep(),props.walkSpeed);
+                    }
+                    else{
                         this.frame = 0;
                     }
-                }
-                if(moveRight || moveLeft)
-                {
-                    setTimeout(()=>this.makeStep(),props.walkSpeed);
-                }
-                else{
-                    this.frame = 0;
                 }
             }
             
@@ -215,7 +224,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
         },
         anim(){
             if(!isJump && !isDoubleJump && !isFall && !isAttack)
-                this!.image!.src = props.walk;
+                this!.image = props.walk;
             //this.frame = 0;
             this.makeStep();
         },
@@ -264,7 +273,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
             return false;
         },
         jump(str, count){
-            if(!isDie){
+            if(!isDie && !itWin){
                 count--;
                 if(!this.startJump)
                     this.startJump = parseFloat(this.canvas!.style.top);
@@ -297,16 +306,21 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
                 }
             }
         }, 
-        die(){ 
-            if(!isDie)
+        die(){
+            if(!isDie && !itWin)
                 isDie = true;
             this.frame++;
             if(this.frame >= this.allSteps)
             {
-                if(this.allLives == 1) {
+                this.allLives--;
+                console.log(this.allLives);
+                
+                if(this.allLives == 0) {
                     itLoze();
                 }
-                this.newLife()
+                else {
+                    this.newLife();
+                }
             }
             else{
                 setTimeout(()=>this.die(), props.dieSpeed);
@@ -321,7 +335,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
             this.corX = this.canvas!.offsetLeft;
             this.corY = document.documentElement.clientHeight/2 - props.height + 220
             this.canvas!.style.top = `${this.corY}px`;
-            this!.image!.src = props.walk
+            this!.image = props.walk
             props.scrollWindow(this)
             moveRight = false;
             moveLeft = false;
@@ -337,7 +351,6 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
             props.setBulletChange(this.bullet.length);
             props.setCharacterHP(100);
             this.HP = props.HP;
-            this.allLives--;
             props.setNewLive(this.allLives);
         },
         attack(){
@@ -368,7 +381,6 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
                props.setBullet(this.bullet);
                props.setBulletChange(this.bullet.length);
                 let a = ()=>{
-                    console.log(this.allSteps);
                     
                     this.frame++;
                     if(this.frame >= this.allSteps)
@@ -415,7 +427,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
         if(!isDie){
             if(e.code == 'Space' && !isAttack)
             {
-                CANVAS.image!.src = props.attack;
+                CANVAS.image = props.attack;
                 isAttack = true;
                 CANVAS.attack();
             }
@@ -431,12 +443,12 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
             }
             if(e.code == "ArrowUp") {
                 if(!isJump && !isDoubleJump && !isFall){
-                    CANVAS.image!.src = props.jump;
+                    CANVAS.image = props.jump;
                     isJump = true;   
                     CANVAS.frame = 0;
                     CANVAS.jump('one', props.jumpSteps * 4);
                 }else if((!isDoubleJump && isJump) || (!isDoubleJump && isFall)){
-                    CANVAS.image!.src = props.jump;
+                    CANVAS.image = props.jump;
                     isDoubleJump = true;
                     isJump = false;
                     CANVAS.frame = 0;
@@ -458,7 +470,6 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
         addEventListener("popstate",fn);
         document.addEventListener("keydown", KeyDown);
         document.addEventListener("keyup", KeyUp);
-    
     },[])
 
     return (

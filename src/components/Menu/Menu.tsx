@@ -4,6 +4,7 @@ import './Menu.css'
 import Button from '../UI/Button';
 import {useNavigate } from 'react-router-dom';
 import goMenu from '../../assets/goMenu.png'
+import { v4 as uuid } from 'uuid';
 
 interface IMenu{
     lan:string,
@@ -63,7 +64,7 @@ const Menu = (props:IMenu) => {
                 :
                 <div className="LeaderBoard">
                     <div className="titleLeaderBoard">{props.lan == 'RU' ? 'Таблица Лидеров' : 'Leaderboard'}</div>
-                    <div className="allLiders">{getTable().split('.').map(el=> <pre>{el
+                    <div className="allLiders">{getTable().split('.').map(el=> <pre key={uuid()}>{el
                     }</pre>)}</div>
                     <div onClick={()=>Lider()} className="back" style={{backgroundImage:`url(${goMenu})`}}></div>
                 </div>
