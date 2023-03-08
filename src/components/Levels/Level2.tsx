@@ -4,15 +4,8 @@ import GameField from '../GameField/GameField';
 import { v4 as uuid } from 'uuid';
 import {IBlockWhithoutImage, IEnemyWhithoutFunc} from '../types'
 
-import walk from '../../assets/Sprites/Golem sprite/walk/walk.png'
-import stand from '../../assets/Sprites/Golem sprite/stand/stand.png'
-import atack from '../../assets/Sprites/Golem sprite/atack/atack.png'
-import die from '../../assets/Sprites/Golem sprite/die/die.png'
 import { ICharacterWhithoutState } from '../types';
 import background from '../../assets/level2.jpg'
-
-import bull from '../../assets/Sprites/Golem sprite/bullet/bullet.png'
-
 import center_up from  '../../assets/blocks2/center_up.png'
 import center from  '../../assets/blocks2/center.png'
 import left from  '../../assets/blocks2/left.png'
@@ -23,14 +16,19 @@ import down from  '../../assets/blocks2/down.png'
 
 interface ILevel2{
     character:ICharacterWhithoutState,
+    Images:{
+        walk:HTMLImageElement,
+        stand:HTMLImageElement,
+        die:HTMLImageElement,
+        atack:HTMLImageElement,
+        bullet:HTMLImageElement,
+    }
 }
 const Level2 = (props:ILevel2) => {
-    let allHeight = 0;
-    let allWidth = 0;
+    let allHeight = 2800;
+    let allWidth = 7650;
     let [blocks, setBlocks] = React.useState<IBlockWhithoutImage[]>([]);
     React.useEffect(()=>{
-        allHeight = window.innerHeight * 3;
-        allWidth = window.innerWidth * 4;
         setBlocks([{id:uuid(),height:300, width:400, top:document.documentElement.clientHeight/2 + 210,},
         {id:uuid(),height:100, width:100,top:document.documentElement.clientHeight/2 +123,left:200},
         {id:uuid(),height:100,width:400,top:document.documentElement.clientHeight/2 + 450,left:700},
@@ -105,22 +103,22 @@ const Level2 = (props:ILevel2) => {
             top:o.top,
             rightDirection:o.rightDirection,
     
-            walk:walk,
+            walk:props.Images.walk,
             walkAllEnymySteps:o.walkAllEnymySteps,
             walkSteps:o.walkSteps,
             walkSpeed:o.walkSpeed,
     
-            stand:stand,
+            stand:props.Images.stand,
             standAllEnymySteps:o.standAllEnymySteps,
             standSteps:o.standSteps,
             standSpeed:o.standSpeed,
     
-            die:die,
+            die:props.Images.die,
             dieAllEnymySteps:o.dieAllEnymySteps,
             dieSteps:o.dieSteps,
             dieSpeed:o.dieSpeed,
     
-            atack:atack,
+            atack:props.Images.atack,
             atackAllEnymySteps:o.atackAllEnymySteps,
             atackSteps:o.atackSteps,
             atackSpeed:o.atackSpeed,
@@ -129,7 +127,7 @@ const Level2 = (props:ILevel2) => {
             myBullet:{
                 height:90,
                 width:100,
-                image:bull ,
+                image:props.Images.bullet,
                 stepCount:7,
                 damage:20,
                 offset:0,
@@ -141,7 +139,7 @@ const Level2 = (props:ILevel2) => {
     let enemy:IEnemyWhithoutFunc[]= [
         addEnemy({
             left:970,
-            top:650,
+            top:document.documentElement.clientHeight/2 + 350 - 150,
             rightDirection:false,
             walkAllEnymySteps:5,
             walkSteps:11,
@@ -158,7 +156,7 @@ const Level2 = (props:ILevel2) => {
         }),
         addEnemy({
             left:1970,
-            top:650,
+            top:document.documentElement.clientHeight/2 + 350 - 150,
             rightDirection:false,
             walkAllEnymySteps:11,
             walkSteps:11,
@@ -175,7 +173,7 @@ const Level2 = (props:ILevel2) => {
         }),
         addEnemy({
             left:2650,
-            top:1050,
+            top:document.documentElement.clientHeight/2 + 750 - 150,
             rightDirection:true,
             walkAllEnymySteps:21,
             walkSteps:11,
@@ -192,7 +190,7 @@ const Level2 = (props:ILevel2) => {
         }),
         addEnemy({
             left:4780,
-            top:550,
+            top:document.documentElement.clientHeight/2 + 250 - 150,
             rightDirection:false,
             walkAllEnymySteps:11,
             walkSteps:11,
@@ -226,7 +224,7 @@ const Level2 = (props:ILevel2) => {
         }),
         addEnemy({
             left:6270,
-            top:1000,
+            top:document.documentElement.clientHeight/2 + 700 - 150,
             rightDirection:true,
             walkAllEnymySteps:16,
             walkSteps:11,

@@ -1,0 +1,46 @@
+.Loader{
+    background-color: #3f4c52;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:100vw;
+    height:100vh;
+    flex-direction: column;
+    font-size: 30px;
+}
+.progress{
+    height:50px;
+    border-radius: 6px;
+    width:400px;
+    background-color: #44878C;
+}
+.currentProgress{
+    height:100%;
+    border-radius: 6px;
+    background-color: yellow;
+}
+.LoaderTitle{
+    margin-bottom:20px;
+    color: #c6c7d3;
+    position: relative;
+}
+.LoaderTitle:before{
+    content:'...';
+    position:absolute;
+    height:10px;
+    width: 30px;
+    right:-35px;
+    animation: 2s ease-in 1s infinite load;
+}
+
+@keyframes load{
+    20%{
+        content:'.';
+    }
+    60%{
+        content:'..';
+    }
+    100%{
+        content:'...';
+    }
+}

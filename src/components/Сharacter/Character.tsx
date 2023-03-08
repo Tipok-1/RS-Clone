@@ -21,7 +21,6 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
     let isFall = false;
     let isDie = false;
     let isAttack = false;
-
     let CANVAS:ICanvasCharacter = {
         walk:props.walk,
         canvas:null,
@@ -38,6 +37,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
         bullet:[],
         allLives:3,
         HP:props.HP,
+        
         init(){
             this.canvas = canvasRef.current;
             this.ctx = this.canvas!.getContext('2d');
@@ -47,7 +47,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
             this.corX = this.canvas!.offsetLeft;
             this.canvas!.style.top = `${this.corY}px`;
             this.image = new Image();
-            this.image.src = this.walk;
+            this.image = this.walk;
             this.canvas!.addEventListener("damage",(e:CustomEventInit)=>{
                 this.HP -= e.detail.damage;
                 let prosent = Math.round(((this.HP * 100)/props.HP));
@@ -57,7 +57,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
                     if(!isDie){
                         this.resetFall()
                         this.allSteps = props.dieSteps;
-                        this.image!.src = props.die;
+                        this.image = props.die;
                        // if(!itWin)
                             this.die();
                     }
@@ -69,7 +69,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
             if(isJump || isDoubleJump)
             {
                 if(!isAttack)
-                    this!.image!.src = props.walk
+                    this!.image = props.walk
                 isJump = false;
                 isDoubleJump = false;
             }
@@ -95,7 +95,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
             {
                 this.resetFall()
                 this.allSteps = props.dieSteps;
-                this.image!.src = props.die;
+                this.image= props.die;
                //if(!itWin){
             console.log(this.canvas!.parentElement!.offsetHeight);
                
@@ -224,7 +224,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
         },
         anim(){
             if(!isJump && !isDoubleJump && !isFall && !isAttack)
-                this!.image!.src = props.walk;
+                this!.image = props.walk;
             //this.frame = 0;
             this.makeStep();
         },
@@ -335,7 +335,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
             this.corX = this.canvas!.offsetLeft;
             this.corY = document.documentElement.clientHeight/2 - props.height + 220
             this.canvas!.style.top = `${this.corY}px`;
-            this!.image!.src = props.walk
+            this!.image = props.walk
             props.scrollWindow(this)
             moveRight = false;
             moveLeft = false;
@@ -427,7 +427,7 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
         if(!isDie){
             if(e.code == 'Space' && !isAttack)
             {
-                CANVAS.image!.src = props.attack;
+                CANVAS.image = props.attack;
                 isAttack = true;
                 CANVAS.attack();
             }
@@ -443,12 +443,12 @@ const Character:FC<ICharacter> = (props:ICharacter) => {
             }
             if(e.code == "ArrowUp") {
                 if(!isJump && !isDoubleJump && !isFall){
-                    CANVAS.image!.src = props.jump;
+                    CANVAS.image = props.jump;
                     isJump = true;   
                     CANVAS.frame = 0;
                     CANVAS.jump('one', props.jumpSteps * 4);
                 }else if((!isDoubleJump && isJump) || (!isDoubleJump && isFall)){
-                    CANVAS.image!.src = props.jump;
+                    CANVAS.image = props.jump;
                     isDoubleJump = true;
                     isJump = false;
                     CANVAS.frame = 0;

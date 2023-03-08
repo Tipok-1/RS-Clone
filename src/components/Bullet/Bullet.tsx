@@ -41,7 +41,7 @@ const Bullet = (props:IBullet) => {
             this.canvas!.style.left = this.corX +'px';
             this.canvas!.style.top = props.corY +'px';
             this.image = new Image();
-            this.image.src = props.image;
+            this.image = props.image;
             this.gameField = this.canvas?.parentElement as HTMLDivElement;
             if(props.direction == 'left')
                 this.canvas?.classList.add('mirrorX');

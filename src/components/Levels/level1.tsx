@@ -4,14 +4,8 @@ import GameField from '../GameField/GameField';
 import { v4 as uuid } from 'uuid';
 import {IBlockWhithoutImage, IEnemyWhithoutFunc} from '../types'
 
-import walk from '../../assets/Sprites/Goblin sprite/walk/walk.png'
-import stand from '../../assets/Sprites/Goblin sprite/stand/stand.png'
-import atack from '../../assets/Sprites/Goblin sprite/attack/attack.png'
-import die from '../../assets/Sprites/Goblin sprite/die/die.png'
-import { ICharacterWhithoutState } from '../types';
-import background from '../../assets/level1.png'
-import bull from '../../assets/Sprites/Goblin sprite/bullet/bullet.png'
 
+import background from '../../assets/level1.png'
 import center_up from  '../../assets/blocks/center_up.png'
 import center from  '../../assets/blocks/center.png'
 import left from  '../../assets/blocks/left.png'
@@ -20,18 +14,38 @@ import right from  '../../assets/blocks/right.png'
 import right_up from  '../../assets/blocks/right_up.png'
 import down from  '../../assets/blocks/down.png'
 
+import { ICharacterWhithoutState } from '../types';
+
 interface ILevel1{
     character:ICharacterWhithoutState,
     setLevel:(n:number)=>void
+    Images:{
+        walk:HTMLImageElement,
+        stand:HTMLImageElement,
+        die:HTMLImageElement,
+        atack:HTMLImageElement,
+        bullet:HTMLImageElement,
+    }
 }
 const Level1 = (props:ILevel1): JSX.Element => {
     
-    let allHeight = 0;
-    let allWidth = 0;
+    /*async function loadImage(){
+        let img:string[] = [walk, stand, atack, die,background,bull, center_up,center,left,left_up, right, right_up,down];
+        let image:HTMLImageElement[] = img.map(i=>{
+            let im = new Image()
+            im.src = i;
+            return im;
+        })
+        Promise.all(image.filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))).then(() => {
+            console.log('images finished loading');
+        });
+    }
+    loadImage();*/
+    let allHeight = 2800;
+    let allWidth = 7650;
     let [blocks, setBlocks] = React.useState<IBlockWhithoutImage[]>([]);
     React.useEffect(()=>{
-        allHeight = window.innerHeight * 3;
-        allWidth = window.innerWidth * 4;
+        
         setBlocks([{id:uuid(),height:300, width:400, top:document.documentElement.clientHeight/2 + 210,},
         {id:uuid(),height:100, width:100,top:document.documentElement.clientHeight/2 +123,left:200},
         {id:uuid(),height:300,width:400,top:document.documentElement.clientHeight/2 + 50,left:700},
@@ -95,22 +109,22 @@ const Level1 = (props:ILevel1): JSX.Element => {
             top:o.top,
             rightDirection:o.rightDirection,
     
-            walk:walk,
+            walk:props.Images.walk,
             walkAllEnymySteps:o.walkAllEnymySteps,
             walkSteps:o.walkSteps,
             walkSpeed:o.walkSpeed,
     
-            stand:stand,
+            stand:props.Images.stand,
             standAllEnymySteps:o.standAllEnymySteps,
             standSteps:o.standSteps,
             standSpeed:o.standSpeed,
     
-            die:die,
+            die:props.Images.die,
             dieAllEnymySteps:o.dieAllEnymySteps,
             dieSteps:o.dieSteps,
             dieSpeed:o.dieSpeed,
     
-            atack:atack,
+            atack:props.Images.atack,
             atackAllEnymySteps:o.atackAllEnymySteps,
             atackSteps:o.atackSteps,
             atackSpeed:o.atackSpeed,
@@ -119,7 +133,7 @@ const Level1 = (props:ILevel1): JSX.Element => {
             myBullet:{
                 height:10,
                 width:75,
-                image:bull,
+                image:props.Images.bullet,
                 stepCount:5,
                 damage:10,
                 offset:80,
@@ -131,7 +145,7 @@ const Level1 = (props:ILevel1): JSX.Element => {
     let enemy:IEnemyWhithoutFunc[]= [
         addEnemy({
             left:1000,
-            top:380,
+            top:document.documentElement.clientHeight/2 + 50 - 135,
             rightDirection:false,
             walkAllEnymySteps:15,
             walkSteps:13,
@@ -148,7 +162,7 @@ const Level1 = (props:ILevel1): JSX.Element => {
         }),
         addEnemy({
             left:1300,
-            top:2180,
+            top:2165,
             rightDirection:false,
             walkAllEnymySteps:27,
             walkSteps:13,
@@ -165,7 +179,7 @@ const Level1 = (props:ILevel1): JSX.Element => {
         }),
         addEnemy({
             left:270,
-            top:1130,
+            top:document.documentElement.clientHeight/2 +800 - 135,
             rightDirection:true,
             walkAllEnymySteps:15,
             walkSteps:13,
@@ -182,7 +196,7 @@ const Level1 = (props:ILevel1): JSX.Element => {
         }),
         addEnemy({
             left:2440,
-            top:1130,
+            top:document.documentElement.clientHeight/2 +800 - 135,
             rightDirection:true,
             walkAllEnymySteps:17,
             walkSteps:13,
@@ -199,7 +213,7 @@ const Level1 = (props:ILevel1): JSX.Element => {
         }),
         addEnemy({
             left:3440,
-            top:730,
+            top:document.documentElement.clientHeight/2 +400 - 135,
             rightDirection:true,
             walkAllEnymySteps:3,
             walkSteps:13,
@@ -216,7 +230,7 @@ const Level1 = (props:ILevel1): JSX.Element => {
         }),
         addEnemy({
             left:4290,
-            top:2180,
+            top:2165,
             rightDirection:true,
             walkAllEnymySteps:23,
             walkSteps:13,
@@ -233,7 +247,7 @@ const Level1 = (props:ILevel1): JSX.Element => {
         }),
         addEnemy({
             left:5650,
-            top:980,
+            top:965,
             rightDirection:false,
             walkAllEnymySteps:23,
             walkSteps:13,
@@ -250,7 +264,7 @@ const Level1 = (props:ILevel1): JSX.Element => {
         }),
         addEnemy({
             left:6760,
-            top:1980,
+            top:1965,
             rightDirection:true,
             walkAllEnymySteps:17,
             walkSteps:13,
@@ -266,6 +280,7 @@ const Level1 = (props:ILevel1): JSX.Element => {
             atackSpeed:300,
         }),
     ]
+
     return (
         <GameField
             blocks={blocks}
